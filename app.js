@@ -18,22 +18,37 @@ function addBookToLibrary() {
   myLibrary.push(newBook);
 }
 
+// function removeBook(book) {
+//   console.log("did it");
+//   this.innerHTML = 'Dynamic event success.';
+//   this.className += ' dynamic-success';
+//   // tableBody.removeChild(book);
+// }
+
 function addBooksToTable(library) {
   myLibrary.forEach(book => {
-    const newBook = document.createElement("tr");
-    const newContent = `<td class="author">${book.author}</td><td class="title">${book.title}</td><td class="num-of-pages">${book.numOfPages}</td><td class="remove-book"><button class="delete-book">Delete</button></td>`;
-    newBook.innerHTML = newContent;
-    tableBody.appendChild(newBook);
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td class="author">${book.author}</td><td class="title">${book.title}</td><td class="num-of-pages">${book.numOfPages}</td>`;
+    const tdRemoveBook = document.createElement("td");
+    tdRemoveBook.className = "remove-book";
+    const removeBtn = document.createElement("button");
+    removeBtn.className = "remove-btn";
+    removeBtn.innerHTML = "Delete";
+    tdRemoveBook.appendChild(removeBtn);
+    tr.appendChild(tdRemoveBook);
+    
+    tableBody.appendChild(tr);
+
+    removeBtn.onclick = removeBook => {
+      console.log("did it");
+      tableBody.removeChild(tr);
+    };
   });
-  removeBtns = document.querySelectorAll(".delete-book");
+  
 }
+
+
 
 let harryPotter = new Book("JK Rowling", "Harry Potter", "343");
 let peterPan = new Book("JM Barrie", "Peter Pan", "623");
 myLibrary.push(harryPotter, peterPan);
-
-removeBtns.forEach(button => {
-  button.addEventListener("click", () => {
-    console.log("click");
-  })
-})
