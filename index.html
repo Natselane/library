@@ -8,10 +8,10 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <h1>The Library</h1>
-        <button id="new-book" type="button" class="btn btn-secondary">ADD NEW BOOK</button>
-        <form action="" class="new-book-form p-3 border border-primary">
+    <div class="container bg-light">
+        <h1 class="text-primary my-3">The Library</h1>
+        <button id="new-book" type="button" class="btn btn-secondary mb-4">ADD NEW BOOK</button>
+        <form action="" class="new-book-form p-3 mb-4 border border-primary form-display-none">
             <div class="form-group form-author">
                 <label for="author" class="w-100">Author</label>
                 <input type="text" name="author" id="author" class="form-control">
@@ -25,31 +25,27 @@
             <div class="form-group form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
                 <label class="form-check-label" for="exampleRadios1">
-                  Want to Read
+                  Not Read
                 </label>
               </div>
               <div class="form-group form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
                 <label class="form-check-label" for="exampleRadios2">
-                  Currently Reading
-                </label>
-              </div>
-              <div class="form-group form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-                <label class="form-check-label" for="exampleRadios3">
-                  Completed
+                  Read
                 </label>
               </div>
             <div class="form-group form-submit">
                 <button type="button" class="btn btn-primary">Add</button>
             </div>
         </form>
-        <table>
+        <table class="table table-bordered table-hover table-sm">
             <thead>
                 <tr>
-                  <th>Author</th>
-                  <th>Title</th>
+                  <th>#</th>
+                  <th class="w-25">Author</th>
+                  <th class="w-25">Title</th>
                   <th>Number of Pages</th> 
+                  <th>Status</th> 
                   <th>Remove Book</th> 
                 </tr>
             </thead>
