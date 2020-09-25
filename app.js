@@ -19,8 +19,8 @@ function Book(id, author, title, numOfPages, status) {
 
     this.changeStatus = function(newStatus) {
       this.status = newStatus;
-    }
-}
+    };
+};
 
 let harryPotter = new Book("0", "JK Rowling", "Harry Potter", "343", "read");
 let peterPan = new Book("1,", "JM Barrie", "Peter Pan", "623", "not read");
@@ -41,8 +41,8 @@ function addRowToTable() {
         tr.innerHTML = `<td class="book-number">${counter}</td><td class="author">${author}</td><td class="title">${title}</td><td class="num-of-pages">${numOfPages}</td><td class="status"><select class="form-control-sm"><option selected>${status}</option><option>${status2}</option></select></td>`;
         tr.appendChild(remove);
         tableBody.appendChild(tr);
-    })
-}
+    });
+};
 
 // Check everything needed for a book
 const checkCounter = (book) => myLibrary.indexOf(book) + 1;
@@ -76,15 +76,15 @@ const addRemoveBtn = (tr) => {
         myLibrary.splice(indexToRemove - 1, 1);
         // Delete from the table
         tableBody.removeChild(tr);
-    })
+    });
     return tdRemoveBook;
-}
+};
 
 function deleteAllBooks() {
   while (tableBody.rows.length > 0) {
     tableBody.deleteRow(0);
-  }
-}
+  };
+};
 
 function addNewBook() {
   let libLength = myLibrary.length + 1;
@@ -112,10 +112,9 @@ select.forEach(select => {
     let currentValue = event.target.value;
     let index = select.parentElement.parentElement.querySelector("td").innerText - 1;
     myLibrary[index].changeStatus(currentValue);
-  })
-})
+  });
+});
 
 addNewBookBtn.addEventListener("click", () => {
   addNewBook();
 });
-
