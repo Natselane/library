@@ -1,6 +1,12 @@
-const newBookBtn = document.querySelector("#new-book");
+const newBookBtn = document.querySelector("#new-book-btn");
 const newBookForm = document.querySelector(".new-book-form");
 const tableBody = document.querySelector("#tableBody");
+const addNewBookBtn = document.querySelector("#add-new-book-btn");
+const newAuthor = document.querySelector("#author");
+const newTitle = document.querySelector("#title");
+const newNumOfPages = document.querySelector("#num-of-pages");
+const notReadRadio = document.querySelector("#not-read");
+const readRadio = document.querySelector("#read");
 
 let myLibrary = [];
 
@@ -61,13 +67,38 @@ const addRemoveBtn = (tr) => {
     // Delete a book
     removeBtn.addEventListener("click", () => {
         // Delete from the library array
-        myLibrary.splice(tr.querySelector("td").innerText - 1, 1);
+        let indexToRemove;
+        myLibrary.forEach((book, index) => {
+          if (book.title == tr.querySelectorAll("td")[2].innerText) {
+            indexToRemove = index;
+          };
+        });
+        myLibrary.splice(indexToRemove - 1, 1);
         // Delete from the table
         tableBody.removeChild(tr);
     })
     return tdRemoveBook;
 }
 
+function deleteAllBooks() {
+  while (tableBody.rows.length > 0) {
+    tableBody.deleteRow(0);
+  }
+}
+
+function addNewBook() {
+  let libLength = myLibrary.length + 1;
+  let id = libLength.toString();
+  let author = newAuthor.value;
+  let title = newTitle.value;
+  let numOfPages = newNumOfPages.value;
+  let status;
+  readRadio.checked === true ? status = "read" : status = "not read";
+  console.log({id, author, title, numOfPages, status});
+  myLibrary.push(new Book(id, author, title, numOfPages, status));
+  deleteAllBooks();
+  addRowToTable();
+};
 
 // Event listeners
 newBookBtn.addEventListener("click", () => newBookForm.classList.toggle("form-display-none"));
@@ -83,3 +114,8 @@ select.forEach(select => {
     myLibrary[index].changeStatus(currentValue);
   })
 })
+
+addNewBookBtn.addEventListener("click", () => {
+  addNewBook();
+});
+
